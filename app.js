@@ -7,11 +7,25 @@ let btns = ["one", "two", "three", "four"];
 let highScore = localStorage.getItem('highScore') || 0;
 document.getElementById('high-score').innerText = `High Score : ${highScore}`;
 
-document.addEventListener("keypress", function() {
+let startButton = document.getElementById('startButton');
+
+function startGame() {
     if (!started) {
         console.log("Game Started !!");
         started = true;
-        levelUp();
+        startButton.style.display = 'none'; // Hides the start button
+        h3.innerText = "Get Ready!";
+        setTimeout(() => {
+            levelUp();
+        }, 1000); // Delay the start by 1 sec
+    }
+}
+
+startButton.addEventListener('click', startGame);
+
+document.addEventListener("keypress", function(event) {
+    if (!started && document.activeElement === document.body) {
+        startGame();
     }
 });
 
@@ -41,6 +55,7 @@ function userFlash(btn) {
 }
 
 function btnPress() {
+    if (!started) return; 
     let btn = this;
     userFlash(btn);
     
@@ -73,7 +88,7 @@ function gameOver() {
         localStorage.setItem('highScore', highScore);
         document.getElementById('high-score').innerText = `High Score : ${highScore}`;
     }
-    h3.innerHTML = `GAME OVER! Your score was :  <b>${level}</b> <br> Press any key to start...`;
+    h3.innerHTML = `GAME OVER! Your score was :  <b>${level}</b> <br> Press Start Game to play again...`;
     console.log("Game Over!");
     let shakeDuration = 500;
     let shakeInterval = setInterval(() => {
@@ -93,15 +108,22 @@ function reset() {
     gameSeq = [];
     userSeq = [];
     level = 0;
+    startButton.style.display = 'inline-block'; // Show the start button again
 }
 
 function restartGame() {
     if (started) {
         gameOver();
     }
-    h3.innerText = "Game restarted! Press any key to start...";
+    h3.innerText = "Press Start Game to play";
     console.log("Game Restarted");
+    
+    this.blur();
+    document.body.focus();
 }
 
 let res = document.querySelector(".restart");
 res.addEventListener("click", restartGame);
+
+// Ensure the body is in focus
+document.body.tabIndex = -1;
