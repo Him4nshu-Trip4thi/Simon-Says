@@ -1,0 +1,129 @@
+body {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    margin-top: 70px;
+    font-size: 3rem;
+    color: #fff;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.scoreboard {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.btn {
+    height: 150px;
+    width: 150px;
+    border: none;
+    border-radius: 10%;
+    margin: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(10px);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.one {
+    background-color: rgb(228, 54, 83);
+}
+
+.two {
+    background-color: rgb(230, 156, 29);
+}
+
+.three {
+    background-color: rgb(142, 8, 142);
+}
+
+.four {
+    background-color: rgb(14, 196, 213);
+}
+
+.flash {
+    background-color: white;
+}
+
+.userFlash {
+    background-color: green;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        height: 100px;
+        width: 100px;
+    }
+
+    .btn-container {
+        grid-template-columns: repeat(2, 100px);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    25% { transform: translate(-1px, -2px); }
+    50% { transform: translate(-3px, 0px); }
+    75% { transform: translate(3px, 2px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+.restart{
+    margin-top: 5%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: 1px solid rgb(63, 6, 6);
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.restart:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(51, 6, 6, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    background-color: maroon;
+    color: white;
+    border: 1px solid red;
+}
